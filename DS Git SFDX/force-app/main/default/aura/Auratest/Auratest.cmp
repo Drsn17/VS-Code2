@@ -1,0 +1,36 @@
+<aura:component implements="force:appHostable" access="global">
+    <aura:attribute name="sectionObjList" type="SObject[]" />
+    dasfg
+       <!-- <aura:iteration items="{!v.sectionObjList}" var="Items" indexVar="Index"> -->
+            <div class="slds-grid slds-wrap slds-gutters slds-box_border slds-m-around_xxx-small slds-m-top_small">
+                <div class="slds-col slds-size--1-of-2  slds-p-top_medium">
+                    <lightning:input label="Form Section Name" />
+                </div>
+                <div class="slds-col slds-size--1-of-2  slds-p-top_medium">
+                    <lightning:input disabled="true" label="Form Name" />
+                </div>
+                <div class="slds-col slds-size--1-of-2  slds-p-top_medium">
+                    <lightning:input type="color" label="Section Color" name="color"/>
+                </div>
+                <div class="slds-col slds-size--1-of-2  slds-p-top_medium">
+                    <lightning:select label="Priority" required="true">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </lightning:select>
+                </div>
+                <div class="slds-col slds-size--1-of-2 slds-p-top_medium slds-p-bottom_medium ">
+                    <lightning:input label="Help Text" />
+                </div>
+                <!--<div class="slds-col slds-size&#45;&#45;1-of-2  slds-p-top_medium"></div>-->
+                <!-- <aura:if isTrue="{!Index == 0}"> -->
+                    <div class="slds-col slds-size--1-of-2 slds-p-top_x-large slds-p-bottom_medium"  style="text-align : right;">
+                        <lightning:button class="" variant="brand" iconName="utility:add" tabindex="{!Index}" label="Add" onclick="{!c.addMoreSection}" />
+                    </div>
+                    
+               <!--</aura:if> -->
+            </div>
+       <!-- </aura:iteration> -->
+
+</aura:component>

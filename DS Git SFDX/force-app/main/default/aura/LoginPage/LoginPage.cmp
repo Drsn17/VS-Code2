@@ -1,0 +1,62 @@
+<aura:component access= "global" controller="LoginPage_ApexClass" implements="force:appHostable">
+    <aura:attribute name="item" type="string" />
+    <aura:attribute name="pwd" type = "string"/>
+    <aura:attribute name="isOpen" type="boolean" default= "false"/>
+    <aura:attribute name="isClose" type="boolean" default= "True"/>
+
+    <div  id = "hide" class="demo-only" style="height: 640px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning:layout horizontalAlign="spread" multipleRows="true">
+
+                        <lightning:layoutitem class="slds-size_2-of-2 slds-p-around_medium slds-align--absolute-center">
+                            <img src="{!$Resource.Salesforce_logo}"/>
+                        </lightning:layoutitem>
+
+                        <lightning:layoutitem class="slds-size_2-of-2 slds-p-around_medium">
+                            <lightning:input name="input1" label="UserName" required="true"
+                                             value="{!v.item}" />
+                        </lightning:layoutitem>
+
+                        <lightning:layoutitem class="slds-size_2-of-2 slds-p-around_medium">
+                            <ui:inputSecret label="Password"  value="{!v.pwd}"  class="slds-input" />
+                        </lightning:layoutitem>
+
+                        <lightning:layoutitem class="slds-size_2-of-2 slds-p-around_medium">
+                            <lightning:button variant="brand" label="Login"
+                                              class="slds-size_2-of-2" onclick="{!c.login}" />
+                        </lightning:layoutitem>
+                        <lightning:layoutitem class="slds-size_1-of-2 slds-p-around_medium">
+                            <input type="checkbox" class="slds-checkbox" name="options"
+                                   id="checkbox-2" value="checkbox-2" />
+                            <label class="slds-checkbox__label" for="checkbox-2">Remember
+                                Me</label>
+
+                        </lightning:layoutitem>
+                        <lightning:layoutitem class="slds-size_1-of-2 slds-p-around_medium">
+                            <p class="slds-text-align_right">
+                                <a>Forget password</a>
+                            </p>
+                        </lightning:layoutitem>
+
+                    </lightning:layout>
+                </div>
+            </div>
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+
+    <!--<aura:if isTrue="{!v.isOpen}">
+        <div  id = "hide" class="demo-only" style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <c:Question2_component/>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </aura:if>-->
+</aura:component>

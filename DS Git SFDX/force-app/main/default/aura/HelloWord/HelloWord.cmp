@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableforallpagetypes"> 
+    <p> This is the Lightning Component</p>
+    <ui:button press="{!c.firstMethod}" label="Click Me"></ui:button>
+	
+</aura:component>

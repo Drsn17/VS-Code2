@@ -1,0 +1,3 @@
+<aura:component description = "Comm_HomeTest" implements="forceCommunity:availableForAllPageTypes">
+	TESTsdfghjk
+</aura:component>

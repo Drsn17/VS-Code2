@@ -1,0 +1,72 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="AccountSaurabhController">
+    <ltng:require styles="{!$Resource.Lightning_slds+'/assets/styles/salesforce-lightning-design-system.css'}"/>
+     <ltng:require styles="{!$Resource.Lightning_slds+'/assets/styles/salesforce-lightning-design-system.min.css'}"/>
+    <aura:attribute name="AccObj" type="Account"  default="{'sobjectType':'account',
+                                                            'Name':'',
+                                                            'AccountNumber':'',
+                                                          'Phone':'',
+                                                        'NumberOfEmployees':'',
+                                                            'Type':''}"/>  
+   <div class="slds-form slds-form_stacked" style= "width:50% ; margin-left:25% ;border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;" >
+       <div>
+           <img src="{!$Resource.Account1 + '/Account1.jpg'}" style="width:7%;height:30px; margin-top:-2%"/>
+           <span style="font-size:30px;margin-left:2%;font-weight: normal; font-family: 'Ultra', sans-serif;font-size: 36px;lifont-weight: normal;font-family: 'Ultra', sans-serif;  
+                        font-size: 36px;line-height: 42px; text-shadow: 0 2px white, 0 3px #777;-height: 42px;text-shadow: 0 2px white, 0 3px #777;">Account Details</span>
+           <hr/>
+       </div>
+       <div class="slds-form-element">
+          <label class="slds-form-element__label" for="Name">Account Name</label>
+          <div class="slds-form-element__control">
+            <ui:inputText aura:id="Name" class="slds-input" value="{!v.AccObj.Name}" placeholder="Account Name" />
+          </div>
+        </div>
+       <div class="slds-form-element">
+          <label class="slds-form-element__label" for="AccountNumber">Account Number</label>
+          <div class="slds-form-element__control">
+            <ui:inputText aura:id="AccountNumber" class="slds-input" value="{!v.AccObj.AccountNumber}" placeholder="Account Number" />
+          </div>
+        </div>
+       <div class="slds-form-element">
+          <label class="slds-form-element__label" for="	Phone">	Phone Number</label>
+          <div class="slds-form-element__control">
+            <ui:inputText aura:id="	Phone" class="slds-input" value="{!v.AccObj.Phone}" placeholder="Phone Number" />
+          </div>
+        </div>
+       <div class="slds-form-element">
+          <label class="slds-form-element__label" for="Number Of Employees">Number Of Employees</label>
+          <div class="slds-form-element__control">
+            <ui:inputText aura:id="NumberOfEmployees" class="slds-input" value="{!v.AccObj.NumberOfEmployees}" placeholder="Number Of Employees" />
+          </div>
+        </div>
+       <div class="slds-form-element">        
+          <div class="slds-form-element__control" style="margin-left:45%;">
+            <lightning:button label="Submit" onclick="{!c.save}"/>
+          </div>
+        </div>
+ </div>
+    
+   <aura:attribute name="ListOfAccount" type="Account[]" description="store accounts with there child contacts"/>
+      <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+    <thead>
+      <tr class="slds-text-heading--label">
+        <th scope="col"><div class="slds-truncate" title="Name">Account Name</div></th>
+		<th scope="col"><div class="slds-truncate" title="AccountNumber">Account Number</div></th>
+        <th scope="col"><div class="slds-truncate" title="Phone">Phone No.</div></th>
+		<th scope="col"><div class="slds-truncate" title="Number Of Employees">Number Of Employees</div></th>
+      </tr>
+    </thead>
+    <tbody>
+      <aura:iteration items="{!v.ListOfAccount}" var="acc">
+        <tr>
+          <td><div class="slds-truncate" title="{!acc.Name}">{!acc.Name}</div></td>
+		  <td><div class="slds-truncate" title="{!acc.AccountNumber}">{!acc.AccountNumber}</div></td>
+          <td><div class="slds-truncate" title="{!acc.Phone}">{!acc.Phone}</div></td>
+            <td><div class="slds-truncate" title="{!acc.NumberOfEmployees}">{!acc.NumberOfEmployees}</div></td>
+        </tr>
+      </aura:iteration>
+    </tbody>
+  </table>
+         <hr/>
+</aura:component>

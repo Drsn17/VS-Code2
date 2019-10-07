@@ -1,0 +1,9 @@
+<aura:component Controller="AccountComponentApex">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:attribute type="Account" name="account"/>
+    <div> 
+        {!v.account.Name}  
+          {!v.account.Phone}  
+    </div>     
+	
+</aura:component>

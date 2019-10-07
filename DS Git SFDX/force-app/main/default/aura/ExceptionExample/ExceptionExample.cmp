@@ -1,0 +1,7 @@
+<aura:component controller="SimpleErrorController">
+    <aura:attribute name="NameVaue" type="String"/>
+
+    <lightning:input label="Name" name="" value="{!v.NameVaue}"/>
+    <lightning:button label="Save" onclick="{!c.saveNewValue}" variant="brand"/>
+
+</aura:component>

@@ -1,0 +1,64 @@
+.THIS {
+}
+
+.THIS .borderColor{
+    border-color: black;
+}
+
+.THIS .slds-select{
+    border-color: black;
+}
+
+
+.THIS .slds-input{
+    border-color: black;
+}
+
+.THIS ::placeholder {
+  color: black;
+}
+
+.THIS .logoSize {
+    width : 200px
+}
+
+.THIS .headingFontSize {
+    font-size: 22px;
+}
+
+.THIS .buttonCSS{
+    color : white;
+    background-color : #88bf51;
+    font-size: 15px;
+}
+
+.THIS .fontColorCSS{
+    color : #88bf51;
+}
+
+.THIS .fontColorBlackCSS .slds-scope .slds-form-element__label {
+    color : black !important;
+}
+.THIS .fontColorBlackCSS .slds-form-element__label{
+    color : black !important;
+}
+.THIS .fontColorBlackCSS .slds-checkbox_faux{
+    color : black !important;
+    border : 1px solid black;
+}
+.THIS .colorRedCSS{
+    color : red;
+}
+
+.THIS .site-header{
+    position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        transition: all 0.3s ease;
+}
+
+.THIS .main-row{
+    box-sizing : border-box;
+}

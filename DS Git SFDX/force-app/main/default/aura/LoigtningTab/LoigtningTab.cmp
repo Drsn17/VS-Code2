@@ -1,0 +1,62 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes" description="LoigtningTab" access="global">
+    <!--<aura:handler action="{!c.doInit}" value="this" name="init"/>-->
+    <ltng:require scripts="{!join(',',
+            'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+            'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')}"
+            styles="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+                  afterScriptsLoaded="{!c.doInit}"
+           />
+    <aura:attribute name="isTabValue" type="Boolean" default="false"/>
+
+    <div class="glyphicon glyphicon-th-list" style="height : 50px;">
+        sddsff
+    </div>
+    <!--<aura:if isTrue="{!isTabValue}">
+        <div>
+            <lightning:tabset variant="vertical">
+                <lightning:tab label="Item One">
+                    Content in Tab One
+                </lightning:tab>
+                <lightning:tab label="Item Two">
+                    Content in Tab Two
+                </lightning:tab>
+                <lightning:tab label="Item Three">
+                    Content in Tab Three
+                </lightning:tab>
+                <lightning:tab label="Item Four">
+                    Content in Tab Four
+                </lightning:tab>
+                <lightning:tab label="Item Five">
+                    Content in Tab Five
+                </lightning:tab>
+                <lightning:tab label="Item Six">
+                    Content in Tab Six
+                </lightning:tab>
+            </lightning:tabset>
+        </div>
+        <aura:set attribute="else">
+            <div>
+                <lightning:tabset variant="vertical">
+                    <lightning:tab label="Item One" >
+                        Content in Tab One
+                    </lightning:tab>
+                    <lightning:tab label="Item Two">
+                        Content in Tab Two
+                    </lightning:tab>
+                    <lightning:tab label="Item Three">
+                        Content in Tab Three
+                    </lightning:tab>
+                    <lightning:tab label="Item Four">
+                        Content in Tab Four
+                    </lightning:tab>
+                    <lightning:tab label="Item Five">
+                        Content in Tab Five
+                    </lightning:tab>
+                    <lightning:tab label="Item Six">
+                        Content in Tab Six
+                    </lightning:tab>
+                </lightning:tabset>
+            </div>
+        </aura:set>
+    </aura:if>-->
+</aura:component>

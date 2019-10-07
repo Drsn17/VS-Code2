@@ -1,0 +1,157 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes" description="CommunitySignUpPage" controller="CommunitySignUpController" access="global">
+    <aura:attribute name="communityData" type="Object" access="global" />
+    <aura:attribute name="isOnBlurCheck" type="Object" access="global" />
+    <aura:attribute name="isDiasableButtton" type="Object" access="global" default="true"/>
+    <aura:attribute name="isDuplicate" type="Object" access="global"/>
+    <aura:attribute name="userList" type="List" access="global" default="[]" />
+    <aura:attribute name="phn" type="Integer" access="global" />
+    <aura:attribute name="pickListValues" type="Object" access="global"  />
+    <aura:attribute name="isToast" type="Boolean" access="global" default="false" />
+    <aura:handler action="{!c.doInit}" value="this" name="init"/>
+
+    <div>
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="12" padding="around-large">
+                <div class="site-header header_logo_left light main-row">sdfgbn</div>
+                <aura:if isTrue="{!v.isToast}">
+                    <div class="demo-only" style="height: 4rem;">
+                        <div class="slds-notify_container slds-is-relative">
+                            <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                                <span class="slds-assistive-text">error</span>
+
+                                <div class="slds-notify__content">
+                                    <h2 class="slds-text-heading_small ">User Id is already Created! <a href="javascript:void(0);">another lead</a> has the same name.</h2>
+                                </div>
+                                <div class="slds-notify__close">
+                                    <div onclick="{!c.closeToast}">
+                                        X
+                                    </div>
+                                    <!--<button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close">-->
+                                        <!--<span class="slds-assistive-text">Close</span>-->
+                                    <!--</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aura:if>
+                <lightning:layout multipleRows="true">
+                    <lightning:layoutItem size="2" smallDeviceSize="0" mediumDeviceSize="2" largeDeviceSize="2" padding="around-medium">
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="8" smallDeviceSize="12" mediumDeviceSize="8" largeDeviceSize="8" class="slds-box borderColor" padding="around-medium">
+                        <lightning:layout multipleRows="true">
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                <img src="{!$Resource.pawseco+'/Pawseco/Images/PawsEco_Logo_green.png'}" class="slds-align_absolute-center logoSize"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                <div  class="slds-text-align_center slds-text-title_bold headingFontSize">Start benefiting from the only management platform designed for the Pet Industry</div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small" >
+                                <lightning:input aura:id="field" name="FirstName" value="{! v.communityData.FirstName}" label="First Name" variant="label-hidden" placeholder="First Name" required="true"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="field" name="LastName" value="{! v.communityData.LastName}" label="Last Name" variant="label-hidden" placeholder="Last Name" onblur="{!c.lastNameBlur}" required="true"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="field" name="AccountName" value="{! v.communityData.AccountName}" label="Store Name" variant="label-hidden" placeholder="Store Name" required="true"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="field" type="email" name="EmailId" value="{! v.communityData.EmailId}" label="Email Id" variant="label-hidden" placeholder="Email Id" onblur="{!c.userEmailIdBlur}" required="true"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="field" type="email" name="UserName" value="{! v.communityData.UserName}" label="User Name" variant="label-hidden" placeholder="User Name" onblur="{!c.userUserIdBlur}" required="true"/>
+                                <aura:if isTrue="{!v.isDuplicate.isUserId}">
+                                    <div class="colorRedCSS">UserId is already exist.</div>
+                                </aura:if>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="field" name="Alias" value="{! v.communityData.Alias}" label="Alias" variant="label-hidden" placeholder="Alias" required="true" />
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="field" type="text" name="CommunityNickname" value="{! v.communityData.CommunityNickName}" label="Community Nick Name" variant="label-hidden" placeholder="Community Nick Name" onblur="{!c.communityNickNameBlur}" required="true"/>
+                                <aura:if isTrue="{!v.isDuplicate.isNickName}">
+                                    <div class="colorRedCSS">Community Nick Name can not be duplicate.</div>
+                                </aura:if>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="inputCmp" type="tel" name="Phone" value="{! v.communityData.Phone}" label="Phone1" variant="label-hidden" placeholder="Phone" maxlength="10" onchange="{!c.onlyNumberCheck}" />
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="field" type="text" name="State" value="{! v.communityData.State}" label="State" variant="label-hidden" placeholder="State"/>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:input aura:id="field" type="text" name="City" value="{! v.communityData.City}" label="City" variant="label-hidden" placeholder="City"/>
+                            </lightning:layoutItem>
+                            <!-- <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:select aura:id="field" name="select1" label="Email Encoding Key" variant="label-hidden">
+                                    <option value="">Email Encoding Key</option>
+                                </lightning:select>
+                                &lt;!&ndash; <lightning:input aura:id="field" name="EmailEncodingKey" value="{! v.communityData.EmailEncodingKey}" label="Email Encoding Key" variant="label-hidden" placeholder="Email Encoding Key" required="true"/>&ndash;&gt;
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:select aura:id="field" name="select1" label="Time Zone Sid Key" variant="label-hidden">
+                                    <option value="1">Time Zone Sid Key</option>
+                                </lightning:select>
+                                &lt;!&ndash;<lightning:input aura:id="field" name="TimeZoneSidKey" value="{! v.communityData.TimeZoneSidKey}" label="Time Zone Sid Key" variant="label-hidden" placeholder="Time Zone Sid Key" required="true"/>&ndash;&gt;
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:select aura:id="field" name="select1" label="Locale Sid Key" variant="label-hidden" >
+                                    <option value="1">Locale Sid Key</option>
+                                </lightning:select>
+                                &lt;!&ndash;<lightning:input aura:id="field" name="LocaleSidKey" value="{! v.communityData.LocaleSidKey}" label="Locale Sid Key" variant="label-hidden" placeholder="Locale Sid Key" required="true"/>&ndash;&gt;
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:select aura:id="field" name="select1" label="Language Locale Key" variant="label-hidden">
+                                    <option value="1">Language Locale Key</option>
+                                </lightning:select>
+                               &lt;!&ndash; <lightning:input aura:id="field" name="LanguageLocaleKey" value="{! v.communityData.LanguageLocaleKey}" label="Language Locale Key" variant="label-hidden" placeholder="Language Locale Key" required="true"/>&ndash;&gt;
+                            </lightning:layoutItem>-->
+
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                <div class="fontColorCSS"><strong>Subscription type</strong></div>
+                            </lightning:layoutItem>
+
+
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:select aura:id="field" name="select1" label="Subscribe Type" value="{!v.communityData.SubscriptionType}" variant="label-hidden">
+                                    <option value="">--Choose one--</option>
+                                    <aura:iteration items="{!v.pickListValues.subscribeType}" var="pickValue">
+                                        <option value="{! pickValue}">{! pickValue}</option>
+                                    </aura:iteration>
+                                </lightning:select>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                                <lightning:select aura:id="field" name="select1" label="No Of Subscriber" value="{! v.communityData.NumberOfUser}" variant="label-hidden">
+                                    <option value="">--Choose one--</option>
+                                    <aura:iteration items="{!v.pickListValues.noOfSubscriber}" var="pickValue">
+                                        <option value="{! pickValue}">{! pickValue}</option>
+                                    </aura:iteration>
+                                </lightning:select>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small" >
+                                <div class="slds-align_absolute-center">
+                                    <lightning:input onchange="{!c.checkIsSelect}" type="checkbox" label="I agree to PawsEco’s terms of use and have read and acknowledged PawsEco’s privacy policy." name="input1" class="fontColorBlackCSS" />
+                                </div>
+                            </lightning:layoutItem>
+
+                            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small" >
+                                <lightning:button disabled="{!v.isDiasableButtton}" variant="success" label="Start enjoying PawsEco" title="Start enjoying PawsEco" onclick="{! c.signUp }" class="slds-align_absolute-center buttonCSS"/>
+                                <!-- <lightning:button variant="destructive" label="Cancel" title="Cancel" onclick="{! c.cancel }"/>-->
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </lightning:layoutItem>
+
+                    <lightning:layoutItem size="2" smallDeviceSize="0" mediumDeviceSize="2" largeDeviceSize="2" padding="around-medium">
+                    </lightning:layoutItem>
+                </lightning:layout>
+
+            </lightning:layoutItem>
+        </lightning:layout>
+
+    </div>
+
+</aura:component>

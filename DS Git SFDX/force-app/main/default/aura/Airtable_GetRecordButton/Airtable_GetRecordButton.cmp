@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable"  controller="AirtableMapping" access="global">
+    <aura:attribute name="opportunityValue" type="Object"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <strong>
+                <span class="slds-page-header__title slds-truncate" title="Airtable to Salesforce">Airtable to Salesforce</span>
+            </strong>
+        </div>
+    </div>
+
+    <lightning:button name="getAirtableDate" label="Insert Records" onclick="{!c.getAirtableData}" variant="neutral"/>
+</aura:component>

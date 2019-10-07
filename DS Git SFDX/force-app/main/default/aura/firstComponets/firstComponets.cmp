@@ -1,0 +1,10 @@
+<aura:component Controller="FirstCompnetsApex">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:attribute type="Account" name="account"/>
+    <div> 
+    DARSHAN ALMIYA
+        Hi, 
+        {!v.account.Name}
+    </div>
+     
+</aura:component>
